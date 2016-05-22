@@ -91,7 +91,6 @@ public class StudentServlet extends HttpServlet {
             request.getRequestDispatcher("/index.jsp").forward(request, response);
             return;
         }
-        System.out.println("-----------------last execute--------------------");
         request.getRequestDispatcher("/queryStudent.jsp").forward(request, response);
     }
 
