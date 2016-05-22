@@ -40,7 +40,7 @@
                 <td><%=students.get(i).getHobby()%>
                 </td>
                 <td>
-                    <a href="/updateStudent.jsp?id=<%=students.get(i).getId()%>&name=<%=students.get(i).getName()%>&password=<%=students.get(i).getPassword()%>&status=updateStudent">更新</a>
+                    <a href="/template/student/updateStudent.jsp?id=<%=students.get(i).getId()%>&name=<%=students.get(i).getName()%>&password=<%=students.get(i).getPassword()%>&status=updateStudent">更新</a>
                 </td>
                 <td><a href="/StudentServlet?id=<%=students.get(i).getId()%>&status=deleteStudent">删除</a></td>
 

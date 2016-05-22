@@ -15,6 +15,7 @@ public class UploadUtil {
     }
 
     public static String getFileName(Part p) {
+        // name 格式如：form-data; name="upload"; filename="xxx.jpg"
         String name = p.getHeader("content-disposition");
         String fileNameTmp = name.substring(name.indexOf("filename=") + 10);
         String fileName = fileNameTmp.substring(0, fileNameTmp.indexOf("\""));
