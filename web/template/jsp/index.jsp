@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="/Jsp/AdminServlet?status=auto">登录</a>    
+	<a href="/AdminServlet?status=auto">登录</a>
        网站首页
 </body>
 </html>

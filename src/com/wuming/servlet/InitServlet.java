@@ -17,7 +17,6 @@ import java.util.ArrayList;
 /**
  * Servlet implementation class InitServlet
  */
-@WebServlet("/InitServlet")
 public class InitServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     GradeImplement gradeImplement = new GradeImplement();

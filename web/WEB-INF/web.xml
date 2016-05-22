@@ -27,31 +27,68 @@
         <servlet-class>com.wuming.servlet.CreateCode</servlet-class>
     </servlet>
 
+    <filter>
+        <filter-name>EnCodeFilter</filter-name>
+        <filter-class>com.wuming.filter.EnCodeFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>com.wuming.filter.AdminFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>EnCodeFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
     <servlet>
-        <!--逻辑名:这个名字可以随便取-->
         <servlet-name>StudentServlet</servlet-name>
-        <!--物理名:具体在哪个包下的哪个类-->
-        <servlet-class>com.wuming.servlet.StudentServlet2</servlet-class>
+        <servlet-class>com.wuming.servlet.StudentServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GradeServlet</servlet-name>
+        <servlet-class>com.wuming.servlet.GradeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InitServlet</servlet-name>
+        <servlet-class>com.wuming.servlet.InitServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet>
+        <servlet-name>AdminServlet</servlet-name>
+        <servlet-class>com.wuming.servlet.AdminServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>CookieServlet</servlet-name>
         <url-pattern>/CookieServlet</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>CreateCode</servlet-name>
         <url-pattern>/CreateCode</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>HelloWorld</servlet-name>
         <url-pattern>/HelloWorld</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
-        <!--逻辑名-->
         <servlet-name>StudentServlet</servlet-name>
-        <!--访问servlet的url路径-->
         <url-pattern>/StudentServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>GradeServlet</servlet-name>
+        <url-pattern>/GradeServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>AdminServlet</servlet-name>
+        <url-pattern>/AdminServlet</url-pattern>
     </servlet-mapping>
 
     <!--下面这对标签里放置的为默认的索引页面,servlet 3.0中可以不设,其默认的就为index.jsp-->

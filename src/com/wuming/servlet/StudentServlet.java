@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/StudentServlet")
 public class StudentServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     StudentImplement studentImplement = new StudentImplement();
