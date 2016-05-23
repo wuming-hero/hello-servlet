@@ -9,7 +9,7 @@
 <body>
 更新班级信息
 
-<form action="/Jsp/GradeServlet" method="post">
+<form action="/GradeServlet" method="post">
 	班级:<input type="text" name="gname" value="${param.gname}"><br/>
 	<input type="submit" value="提交">
 	<input type="hidden" name="status" value="updateGrade">

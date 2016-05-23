@@ -53,7 +53,7 @@ public class GradeServlet extends HttpServlet {
             ArrayList<Grade> grades = gradeImplement.queryGrade(gname);
             request.setAttribute("grades", grades);//自己查询的数据放到request对象中!
             //此跳转是内部跳转,只能跳转到工程内部,中用跳转页面之间的request数据的共享!!所以只有数据存在request情况下才有内部跳转
-            request.getRequestDispatcher("/queryGrade.jsp").forward(request, response);
+            request.getRequestDispatcher("/template/student/queryGrade.jsp").forward(request, response);
         } else if (status.equals("updateGrade")) {
             Grade grade = new Grade();
             grade.setGid(Integer.parseInt(request.getParameter("gid")));
@@ -62,12 +62,12 @@ public class GradeServlet extends HttpServlet {
             //更新到app里,供saveStudent.jsp下的班级信息及时更新
             this.getServletContext().setAttribute("grades", gradeImplement.queryGrade(""));
             //如果servlet与目标页面没有数据的传递,可以使用外部跳转,以下方法为外部跳转!!可以跳到工程外部,比如说 百度...
-            //response.sendRedirect("/Jsp/queryGrade.jsp");
+            //response.sendRedirect("/template/student/queryGrade.jsp");
             String gname = request.getSession().getAttribute("gname").toString();
             ArrayList<Grade> grades = gradeImplement.queryGrade(gname); //只查询之前的session!
             //ArrayList<Grade> grades=gradeImplement.queryGrade(""); //直接这样重新查询下即可,查询全部,
             request.setAttribute("grades", grades);
-            request.getRequestDispatcher("/queryGrade.jsp").forward(request, response);
+            request.getRequestDispatcher("/template/student/queryGrade.jsp").forward(request, response);
         } else if (status.equals("deleteGrade")) {
             int gid = Integer.parseInt(request.getParameter("gid"));
             gradeImplement.deleteGrade(gid);
@@ -76,7 +76,7 @@ public class GradeServlet extends HttpServlet {
             ArrayList<Grade> grades = gradeImplement.queryGrade(gname); //只查询之前的session!
             //ArrayList<Grade> grades=gradeImplement.queryGrade(""); //直接这样重新查询下即可,查询全部,
             request.setAttribute("grades", grades);
-            request.getRequestDispatcher("/queryGrade.jsp").forward(request, response);
+            request.getRequestDispatcher("/template/student/queryGrade.jsp").forward(request, response);
         }
     }
 }

@@ -13,15 +13,13 @@ public class EnCodeFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
-		//System.out.println("---结束--");
+		System.out.println("---EnCodeFilter结束--");
 	}
 
 	@Override
-	public void doFilter(ServletRequest request, ServletResponse response,FilterChain filter) 
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain filter)
 			throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		System.out.println("--doFilter--");
+		System.out.println("--EncodeFilter--");
 		request.setCharacterEncoding("UTF-8");											
 		response.setCharacterEncoding("UTF-8");
 		//如果有下一个过滤器则跳转到下一个过滤器,否则跳转到目标页面
@@ -30,7 +28,6 @@ public class EnCodeFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
 		System.out.println("---EnCodeFilter开始---");
 
 	}

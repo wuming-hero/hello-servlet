@@ -44,7 +44,7 @@ public class StudentServlet2 extends HttpServlet {
         //servlet是mvc模式的controller层,负责得到数据和调用业务层去实现
         StudentImplement studentImplement = new StudentImplement();
 
-        //jsp请求后台的数据全部封装到request对象中,request对象的默认编码也是Iso-8859-1(英文编码,不支持中文),所以如下设置后,便可以传输中文!
+        // jsp请求后台的数据全部封装到request对象中,request对象的默认编码也是Iso-8859-1(英文编码,不支持中文),所以如下设置后,便可以传输中文!
         request.setCharacterEncoding("UTF-8");
 
         System.out.println("name: " + request.getParameter("name"));

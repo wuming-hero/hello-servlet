@@ -6,7 +6,7 @@
 <title>保存班级信息</title>
 </head>
 <body>
-<form action="/Jsp/GradeServlet" method="post">
+<form action="/GradeServlet" method="post">
 	班级:<input type="text" name="gname"><br/>
 	<input type="submit" value="提交">
 	<input type="hidden" name="status" value="saveGrade">

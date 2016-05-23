@@ -35,7 +35,9 @@ public class AdminServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String status = request.getParameter("status");
+
         if ("login".equals(status)) {
             String aname = request.getParameter("aname");
             String apass = request.getParameter("apass");
@@ -49,22 +51,31 @@ public class AdminServlet extends HttpServlet {
                 //response代表响应
                 response.addCookie(anameCookie);
                 response.addCookie(apassCookie);
-                response.sendRedirect("/Jsp/admin/adminIndex.jsp");
+                request.getRequestDispatcher("/template/admin/adminIndex.jsp").forward(request, response);
+//                response.sendRedirect("/template/admin/adminIndex.jsp");
             } else {
                 request.setAttribute("error", "登录失败");
-                request.getRequestDispatcher("/login.jsp").forward(request, response);
+                request.getRequestDispatcher("/template/student/login.jsp").forward(request, response);
             }
         } else if ("auto".equals(status)) {
             Cookie[] cookies = request.getCookies();
+            String name = null;
             for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("aname")) {
+                if ("aname".equals(cookie.getName())) {
+                    name = cookie.getName();
                     request.setAttribute("aname", cookie.getValue());
                 }
-                if (cookie.getName().equals("apass")) {
+                if ("apass".equals(cookie.getName())) {
                     request.setAttribute("apass", cookie.getValue());
                 }
             }
-            request.getRequestDispatcher("/template/jsp/login.jsp").forward(request, response);
+            // 要使用域名才可以记录 cookies(localhost 或者127.0.0.0 或者192.168.x.x 无法正常使用 cookies)
+            if (name != null) {
+                request.getSession().setAttribute("aname", name);
+                request.getRequestDispatcher("/template/admin/adminIndex.jsp").forward(request, response);
+            }else {
+                request.getRequestDispatcher("/template/student/login.jsp").forward(request, response);
+            }
         }
     }
 

@@ -26,31 +26,28 @@ public class InitServlet extends HttpServlet {
      */
     public InitServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
         this.doPost(request, response);
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
         /*request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");*/
+        response.setCharacterEncoding("utf-8");*/
     }
 
     public void init(ServletConfig config)
             throws ServletException {
 
         ArrayList<Grade> grades = gradeImplement.queryGrade("");
-        //System.out.println(grades.size());
+        System.out.println("-------init servlet------ grade size: " + grades.size());
+        //this.getServletContext().setAttribute("grades",gradeImplement.queryGrade(""));
         ServletContext app = config.getServletContext();
         app.setAttribute("grades", grades);
-        //this.getServletContext().setAttribute("grades",gradeImplement.queryGrade(""));
         String[] hobby = {"读书", "篮球", "羽毛球"};
         app.setAttribute("hobby", hobby);
 

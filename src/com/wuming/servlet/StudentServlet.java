@@ -36,7 +36,7 @@ public class StudentServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //System.out.println("---doPost---");
+
         //jsp请求后台的数据全部封装到request对象中,request对象的默认编码也是Iso-8859-1(英文编码,不支持中文),所以如下设置后,便可以传输中文!
         request.setCharacterEncoding("UTF-8");
         //第一个jsp页面都向controller层提交数据,所以要在每一个提交页面中加了一个隐藏字段:status,用来判断是哪个jsp发来的说请求!
@@ -58,13 +58,14 @@ public class StudentServlet extends HttpServlet {
             // 要把当前页保存到session中,因为后面会反复的用到
             request.getSession().setAttribute("currentPage", 1);
             // 把总页数也保存到session中,因为后面会反复的用到
+            System.out.println(studentImplement.countPage(name));
             request.getSession().setAttribute("countPage", studentImplement.countPage(name));
             ArrayList<Student> students = studentImplement.queryStudent(name, 1);
             //setAttribute(),此方法有两个参数,第一个参数为名字,第二个参数为对象,相当于一个名字对应一个集合
             request.setAttribute("students", students);
             //页面之间跳转:servlet跳到jsp显示出我们查出的数据,但此跳转为内部跳转,不能跳转到此工程外!!!
             //System.out.println(students);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/queryStudent.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/template/student/queryStudent.jsp");
             dispatcher.forward(request, response);
         } else if ("splitPage".equals(status)) {
             //从session中拿到关键字
@@ -77,7 +78,7 @@ public class StudentServlet extends HttpServlet {
             // 如果把数据从Ser传递到视图页面中
             request.setAttribute("students", students);
             // 页面之间跳转 ser-->jsp :此跳转是内部跳转不能跳转到工程外的页面
-            request.getRequestDispatcher("/queryStudent.jsp").forward(request, response);
+            request.getRequestDispatcher("/template/student/queryStudent.jsp").forward(request, response);
         } else if ("deleteStudent".equals(status)) {
             int id = Integer.parseInt(request.getParameter("id"));
             studentImplement.deleteStudent(id);
@@ -85,7 +86,7 @@ public class StudentServlet extends HttpServlet {
             String name = request.getSession().getAttribute("name").toString();//用getAttribute得到自己的session变量的值的对象,再用toString转换为字符串
             ArrayList<Student> students = studentImplement.queryStudent(name);
             request.setAttribute("students", students);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/queryStudent.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/template/student/queryStudent.jsp");
             dispatcher.forward(request, response);
         } else if ("updateStudent".equals(status)) {
             Student student = new Student();
