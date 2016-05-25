@@ -73,10 +73,12 @@ public class StudentImplement {
         ResultSet rs = null;
         int page = (currentPage - 1) * size;
         try {
-            pre = con.prepareStatement("select * from student s left join grade g on s.gid=g.gid where s.name like ? limit ?,?");
+            pre = con.prepareStatement("select * from student s left join grade g on s.gid=g.gid where s.name like ? ORDER BY s.id limit ?,?");
             pre.setString(1, "%" + name + "%"); //模糊查询要用"%"+xx+"%"
             pre.setInt(2, page);
             pre.setInt(3, size);
+            // 查询执行的最终 sql 语句
+            System.out.println("----- execute sql: " + pre.toString());
             rs = pre.executeQuery();  //得到结果集
             while (rs.next()) {
                 Student student = new Student();
@@ -194,17 +196,14 @@ public class StudentImplement {
                 countPage = total % size == 0 ? total / 5 : total / 5 + 1;
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } finally {
             try {
                 con.close();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
-
         return countPage;
     }
 

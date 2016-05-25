@@ -40,13 +40,14 @@
                     <td><c:out value="${student.hobby }"/></td>
                     <td><c:out value="${student.grade.gid}"></c:out></td>
                     <td><c:out value="${student.grade.gname}"></c:out></td>
-                    <td><c:url value="/template/student/updateStudent.jsp" var="update">
-                        <c:param name="id" value="${student.id }"/>
-                        <c:param name="name" value="${student.name }"/>
-                        <c:param name="password" value="${student.password }"/>
-                        <c:param name="hobby" value="${student.hobby }"/>
-                        <c:param name="gid" value="${student.grade.gid }"/>
-                    </c:url>
+                    <td>
+                        <c:url value="/template/student/updateStudent.jsp" var="update">
+                            <c:param name="id" value="${student.id }"/>
+                            <c:param name="name" value="${student.name }"/>
+                            <c:param name="password" value="${student.password }"/>
+                            <c:param name="hobby" value="${student.hobby }"/>
+                            <c:param name="gid" value="${student.grade.gid }"/>
+                        </c:url>
                         <a href="${update }">更新</a>
                     </td>
                     <td>
@@ -59,6 +60,7 @@
                 </tr>
             </c:forEach>
         </table>
+
         <a href="/StudentServlet?status=splitPage&currentPage=1">首页</a>
         <c:choose>
             <c:when test="${sessionScope.currentPage==1}">
@@ -68,6 +70,7 @@
                 <a href="/StudentServlet?status=splitPage&currentPage=${sessionScope.currentPage-1}">上一页</a>
             </c:otherwise>
         </c:choose>
+
         <c:choose>
             <c:when test="${sessionScope.currentPage==sessionScope.countPage}">
                 下一页
@@ -76,13 +79,9 @@
                 <a href="/StudentServlet?status=splitPage&currentPage=${sessionScope.currentPage+1}">下一页 </a>
             </c:otherwise>
         </c:choose>
+
         <a href="/StudentServlet?status=splitPage&currentPage=${sessionScope.countPage}">尾页 </a>
-        <script type="text/javascript">
-            function changePage() {
-                var currentPage = document.getElementById("currentPage").value;
-                window.open("/StudentServlet?status=splitPage&currentPage=" + currentPage, "_self");
-            }
-        </script>
+
         <select id="currentPage" onchange="changePage()">
             <c:forEach begin="1" end="${sessionScope.countPage}" step="1" var="num">
                 <c:choose>
@@ -95,5 +94,13 @@
                 </c:choose>
             </c:forEach>
         </select>
+
+
+        <script type="text/javascript">
+            function changePage() {
+                var currentPage = document.getElementById("currentPage").value;
+                window.open("/StudentServlet?status=splitPage&currentPage=" + currentPage, "_self");
+            }
+        </script>
     </body>
 </html>
