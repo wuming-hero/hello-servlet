@@ -51,11 +51,9 @@ public class AdminServlet extends HttpServlet {
                 //response代表响应
                 response.addCookie(anameCookie);
                 response.addCookie(apassCookie);
-                request.getRequestDispatcher("/template/admin/adminIndex.jsp").forward(request, response);
-//                response.sendRedirect("/template/admin/adminIndex.jsp");
+                request.getRequestDispatcher("/template/admin/index.jsp").forward(request, response);
             } else {
                 request.setAttribute("error", "登录失败");
-                request.getRequestDispatcher("/template/student/login.jsp").forward(request, response);
             }
         } else if ("auto".equals(status)) {
             Cookie[] cookies = request.getCookies();
@@ -72,11 +70,10 @@ public class AdminServlet extends HttpServlet {
             // 要使用域名才可以记录 cookies(localhost 或者127.0.0.0 或者192.168.x.x 无法正常使用 cookies)
             if (name != null) {
                 request.getSession().setAttribute("aname", name);
-                request.getRequestDispatcher("/template/admin/adminIndex.jsp").forward(request, response);
-            }else {
-                request.getRequestDispatcher("/template/student/login.jsp").forward(request, response);
+                request.getRequestDispatcher("/template/admin/index.jsp").forward(request, response);
             }
         }
+        request.getRequestDispatcher("/template/student/login.jsp").forward(request, response);
     }
 
 }

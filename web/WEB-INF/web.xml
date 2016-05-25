@@ -35,13 +35,14 @@
         <filter-name>AdminFilter</filter-name>
         <filter-class>com.wuming.filter.AdminFilter</filter-class>
     </filter>
+
     <filter-mapping>
         <filter-name>EnCodeFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
-        <url-pattern>/admin/*</url-pattern>
+        <url-pattern>/AdminServlet/*</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>StudentServlet</servlet-name>

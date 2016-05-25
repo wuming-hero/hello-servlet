@@ -23,11 +23,9 @@ public class AdminFilter implements Filter {
                          FilterChain filter) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession();
-        System.out.print("qwe=" + session.getAttribute("aname"));
         if (session.getAttribute("aname") != ("")) {
-            System.out.print("--正常访问--");
+            System.out.print("--admin 正常访问--");
             //跳转到下一个过滤器,如果没有则跳转到目标页面
-            // pass the request along the filter chainqw
             filter.doFilter(request, response);
         } else {
             System.out.print("--非法进入--");
